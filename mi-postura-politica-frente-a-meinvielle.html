@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi postura frente a Meinvielle</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #f5f0e8;
+    --parchment-dark: #e8e0cc;
+    --ink: #1a1410;
+    --ink-soft: #3a2e22;
+    --gold: #9a7c3a;
+    --gold-light: #c4a44a;
+    --gold-pale: #e8d898;
+    --crimson: #6b1a1a;
+    --crimson-soft: #8b2a2a;
+    --stone: #7a6e5e;
+    --stone-light: #a89880;
+    --divider: #c4b48a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #12100e;
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(19px, 5vw, 23px);
+    line-height: 1.85;
+    min-height: 100vh;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(160deg, #1a1410 0%, #0e0c0a 60%, #1c1408 100%);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1.6rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 30%, rgba(154,124,58,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 60% at 50% 80%, rgba(107,26,26,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ornament-top {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 1.7rem;
+    letter-spacing: 0.3em;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+  }
+
+  .cover-rule {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1.2rem auto;
+  }
+
+  .cover-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+    max-width: 520px;
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+    font-style: italic;
+    color: var(--stone-light);
+    /*color: color-mix(in srgb, var(--stone-light), white 100%);*/
+    margin-top: 1rem;
+    max-width: 400px;
+    line-height: 1.6;
+  }
+.cover-subtitle em {
+  color: color-mix(in srgb, var(--stone-light), white 60%);
+      font-weight: 600;
+  text-shadow: 0 0 1px rgba(255, 235, 190, 0.5); /* brillo suave */
+}
+  .cover-author {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.2em;
+    color: var(--stone);
+    margin-top: 2.5rem;
+    text-transform: uppercase;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold);
+    opacity: 0.4;
+    font-size: 1.9rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%,100%{transform:translateX(-50%) translateY(0)}
+    50%{transform:translateX(-50%) translateY(6px)}
+  }
+
+  /* ── MAIN CONTENT ── */
+  .page {
+    background: var(--parchment);
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--crimson), var(--gold), var(--crimson));
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 2.5rem 1.6rem;
+    border-bottom: 1px solid var(--divider);
+    animation: fadeIn 0.6s ease both;
+  }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+
+  .section:last-child { border-bottom: none; }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4rem, 4.5vw, 1.8rem);
+    font-weight: 600;
+    color: var(--crimson);
+    line-height: 1.3;
+    margin-bottom: 1.2rem;
+  }
+
+  .drop-cap::first-letter {
+    font-family: 'Cinzel', serif;
+    font-size: 3.8em;
+    font-weight: 600;
+    float: left;
+    line-height: 0.75;
+    margin: 0.05em 0.1em 0 0;
+    color: var(--crimson);
+  }
+
+  p { margin-bottom: 1em; color: var(--ink-soft); }
+  p:last-child { margin-bottom: 0; }
+
+  em { font-style: italic; color: var(--ink); }
+  strong { 
+    font-weight: 600; 
+    /*color: var(--ink); */
+    color: color-mix(in srgb, var(--ink), white 20%);
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: linear-gradient(135deg, #f0e8d0, #e8dcc0);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.55rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+    position: relative;
+  }
+  .callout::before {
+    content: '❧';
+    position: absolute;
+    top: 0.6rem; left: -0.9rem;
+    background: var(--parchment-dark);
+    color: var(--gold);
+    font-size: 1.3rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--divider);
+  }
+
+  .callout-alert {
+    background: linear-gradient(135deg, #f5e8e8, #edd8d8);
+    border-left: 3px solid var(--crimson);
+  }
+  .callout-alert::before { content: '⚠'; font-size: 1.3rem; color: var(--crimson); }
+
+  /* ── SCHEMAS ── */
+  .schema-wrap {
+    background: #1a1410;
+    border-radius: 6px;
+    padding: 1.5rem 1rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+
+  .schema-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+  }
+
+  /* Flow diagram */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .flow-node {
+    background: #2a2018;
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 0.5rem 1.2rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    text-align: center;
+    min-width: 180px;
+  }
+
+  .flow-node.crimson-node {
+    border-color: var(--crimson-soft);
+    color: #d4a0a0;
+  }
+
+  .flow-arrow {
+    color: var(--gold);
+    font-size: 1.3rem;
+    opacity: 0.6;
+    line-height: 1;
+  }
+
+  /* Comparison table */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin: 1.2rem 0;
+  }
+
+  .compare-col {
+    background: #1e1810;
+    border-radius: 4px;
+    padding: 0.8rem;
+  }
+
+  .compare-col-header {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid;
+  }
+
+  .compare-col.col-meinvielle .compare-col-header {
+    color: var(--gold);
+    border-color: #3a3020;
+  }
+
+  .compare-col.col-javier .compare-col-header {
+    color: #7ab8a8;
+    border-color: #1a3028;
+  }
+
+  .compare-item {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.55rem;
+    line-height: 1.5;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .compare-item:last-child { border-bottom: none; }
+
+  .compare-col.col-meinvielle .compare-item { color: #c8b888; }
+  .compare-col.col-javier .compare-item { color: #9acabb; }
+
+  /* Zones map */
+  .zones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .zone {
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .zone-green { background: #0e2018; border-left: 3px solid #4a9a6a; }
+  .zone-amber { background: #1e1808; border-left: 3px solid #9a8020; }
+  .zone-red   { background: #200808; border-left: 3px solid #8a2020; }
+
+  .zone-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 0.4rem;
+  }
+  .zone-green .zone-dot { background: #4a9a6a; }
+  .zone-amber .zone-dot { background: #9a8020; }
+  .zone-red   .zone-dot { background: #8a2020; }
+
+  .zone-label {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+  }
+  .zone-green .zone-label { color: #6aba8a; }
+  .zone-amber .zone-label { color: #baa040; }
+  .zone-red   .zone-label { color: #ba4040; }
+
+  .zone-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.55rem;
+    line-height: 1.5;
+  }
+  .zone-green .zone-text { color: #90c8a8; }
+  .zone-amber .zone-text { color: #c8b060; }
+  .zone-red   .zone-text { color: #c87070; }
+
+  /* Jesus image diagram */
+  .jesus-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin: 0.5rem 0;
+  }
+
+  .jesus-card {
+    background: #1a1410;
+    border-radius: 6px;
+    padding: 1rem 0.9rem;
+    text-align: center;
+  }
+
+  .jesus-card.card-king { border-top: 2px solid var(--gold); }
+  .jesus-card.card-friend { border-top: 2px solid #4a8888; }
+
+  .jesus-icon {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .jesus-card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .card-king .jesus-card-title { color: var(--gold); }
+  .card-friend .jesus-card-title { color: #6aacac; }
+
+  .jesus-card-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: #a09880;
+  }
+  .card-friend .jesus-card-text { color: #7aacac; }
+
+  /* Authority diagram */
+  .authority-diagram {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .auth-col { text-align: center; }
+
+  .auth-col-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .auth-col:first-child .auth-col-title { color: var(--gold); }
+  .auth-col:last-child .auth-col-title { color: #6aacac; }
+
+  .auth-node {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.3rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.25rem;
+  }
+
+  .auth-col:first-child .auth-node {
+    background: #2a2010;
+    color: var(--gold-pale);
+    border: 1px solid #4a3818;
+  }
+
+  .auth-col:last-child .auth-node {
+    background: #0e2020;
+    color: #9ad4c8;
+    border: 1px solid #1a4038;
+  }
+
+  .auth-arrow {
+    color: var(--gold);
+    font-size: 1rem;
+    margin: 0.15rem 0;
+    opacity: 0.6;
+  }
+
+  .auth-col:last-child .auth-arrow { color: #4a9898; }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    background: #12100e;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .footer-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 1rem;
+    opacity: 0.4;
+  }
+
+  .footer-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.7rem;
+    font-style: italic;
+    color: var(--stone);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  .toc {
+    background: #1a1410;
+    padding: 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #2a2010;
+  }
+
+  .toc-inner {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .toc-inner::-webkit-scrollbar { display: none; }
+
+  .toc-item {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stone);
+    text-decoration: none;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid #2a2010;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .toc-item:hover { color: var(--gold-light); border-color: #4a3818; }
+
+  /* ── ORNAMENTAL DIVIDERS ── */
+  .ornament-divider {
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.4;
+    font-size: 1rem;
+    margin: 1.2rem 0;
+    letter-spacing: 0.5em;
+  }
+
+  /* ── SUB-SECTIONS ── */
+  .subsection {
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--parchment-dark);
+  }
+
+  .subsection-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--crimson);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  /* responsive */
+  @media (max-width: 400px) {
+    .compare-grid { grid-template-columns: 1fr; }
+    .authority-diagram { grid-template-columns: 1fr; }
+    .jesus-split { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="ornament-top">✦ &nbsp; Discernimiento &nbsp; ✦</div>
+  <div class="cover-rule"></div>
+  <h1 class="cover-title">Mi postura frente a Meinvielle</h1>
+  <div class="cover-rule"></div>
+  <p class="cover-subtitle">Una lectura personal de la <em>Concepción Católica de la Política</em>, construida en diálogo y desde la experiencia</p>
+  <div class="cover-author">Lectura en construcción · para compartir en estudio</div>
+  <div class="scroll-hint">↓</div>
+</div>
+
+<!-- NAV -->
+<nav class="toc" aria-label="Índice">
+  <div class="toc-inner">
+    <a class="toc-item" href="#nota">Nota de entrada</a>
+    <a class="toc-item" href="#jesus">Dos imágenes</a>
+    <a class="toc-item" href="#valoro">Lo que valoro</a>
+    <a class="toc-item" href="#distancia">Distanciamientos</a>
+    <a class="toc-item" href="#mapa">Mapa general</a>
+    <a class="toc-item" href="#institucional">Propuesta institucional</a>
+    <a class="toc-item" href="#autoridad">Autoridad y resistencia</a>
+    <a class="toc-item" href="#positivo">Mi postura</a>
+    <a class="toc-item" href="#quiebre">El quiebre</a>
+    <a class="toc-item" href="#metodo">Método</a>
+    <a class="toc-item" href="#metodo">Método</a>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<main class="page">
+
+  <!-- NOTA DE ENTRADA -->
+  <section class="section" id="nota">
+    <div class="section-label">Prólogo</div>
+    <h2 class="section-title">Nota de entrada</h2>
+    <p class="drop-cap">Lo que sigue no es una postura doctrinal ni un argumento académico. Es el resultado de un proceso de discernimiento personal, construido en diálogo con la Doctrina Social de la Iglesia, con algunas corrientes del pensamiento católico contemporáneo y con la experiencia concreta de mi trabajo y desarrollo profesional.</p>
+    <p>Habrá cosas en las que suene convencido, pero en la mayoría de los casos esa convicción no es fruto de una elección puramente racional: es parte de lo que soy, de cómo me formé, de lo que resuena en mi conciencia cuando leo, escucho o vivo algo. No lo presento como verdad objetiva, sino como mi punto de partida honesto, todavía en construcción.</p>
+    <div class="callout">
+      Dios sobrepasa por completo cualquier argumento teológico, filosófico o científico que podamos construir. Las doctrinas —incluyendo la católica— son herramientas que nos ayudan a dar sentido, pero siguen siendo reducciones de una realidad más grande.
+    </div>
+    <p>Jesús mismo, para hablarnos, tuvo que encarnarse: bajar a nuestra inmanencia, hablar desde donde estamos parados. Eso me dice algo sobre los límites de cualquier sistema que pretenda haber capturado del todo la lógica de Dios, incluyendo el de Meinvielle y el mío.</p>
+  </section>
+
+  <!-- DOS IMÁGENES DE JESÚS -->
+  <section class="section" id="jesus">
+    <div class="section-label">Punto de partida</div>
+    <h2 class="section-title">Dos imágenes de Jesús</h2>
+    <p>Una cosa que noto al leer a Meinvielle, y que creo que explica mucho de lo que sigue, es que su teología política orbita alrededor de una imagen de Jesús que no es la que me formó a mí ni a las comunidades que conozco.</p>
+
+    <div class="schema-wrap">
+      <div class="schema-title">Dos lecturas del mismo Cristo</div>
+      <div class="jesus-split">
+        <div class="jesus-card card-king">
+          <span class="jesus-icon">♛</span>
+          <div class="jesus-card-title">Cristo Rey</div>
+          <div class="jesus-card-text">Reina desde arriba. Su voluntad se expresa en una jerarquía que desciende y ordena. Se le debe adoración y reverencia.</div>
+        </div>
+        <div class="jesus-card card-friend">
+          <span class="jesus-icon">✦</span>
+          <div class="jesus-card-title">El amigo</div>
+          <div class="jesus-card-text">Camina con nosotros. Se sienta con los marginados. Pregunta antes de sanar. Llama discípulos, no siervos.</div>
+        </div>
+      </div>
+    </div>
+
+    <p>La imagen que me formó desde niño, en familia y en comunidad, es la del Jesús que co-construye el orden desde abajo, en la relación, en el encuentro, en el camino compartido. Esa imagen no es una invención mía ni una reducción sentimental del Evangelio. Es una forma legítima y antigua de leer a Cristo, presente en muchas comunidades eclesiales de base latinoamericanas, en la teología del pueblo y en tradiciones pastorales que han brotado del contacto directo con la pobreza y la exclusión.</p>
+    <p>El otro Jesús —el majestuoso Rey al que se le debe adoración— no ha estado en nuestro radar. Es ajeno a nosotros. No porque no exista en la tradición, sino porque nuestra experiencia de fe se construyó en otro lugar.</p>
+    <div class="callout">
+      No digo que una imagen sea correcta y la otra equivocada. Digo que son dos lecturas que producen teologías políticas muy distintas, y que es honesto reconocer desde cuál estoy hablando.
+    </div>
+  </section>
+
+  <!-- LO QUE VALORO -->
+  <section class="section" id="valoro">
+    <div class="section-label">Concordancias</div>
+    <h2 class="section-title">Lo que reconozco y valoro</h2>
+    <p>Su diagnóstico del problema tiene fuerza real. El individualismo liberal fragmenta el tejido social y subordina a las personas a quienes acumulan más. El estatismo socialista absorbe sin permitir que las personas crezcan en su propia responsabilidad. Ambos, aunque de maneras distintas, terminan vaciando a la persona de su capacidad de ser agente.</p>
+    <p>También resuena en mí su insistencia en que la política no es técnica neutral sino que tiene un fin moral, y la defensa de los cuerpos intermedios —la familia, el municipio, el gremio— como espacios esenciales donde la vida humana se desarrolla realmente.</p>
+
+    <div class="schema-wrap">
+      <div class="schema-title">Zonas de concordancia real</div>
+      <div class="zones">
+        <div class="zone zone-green">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Fuerte</div>
+            <div class="zone-text">Rechazo al reduccionismo económico. La política tiene un fin moral, no solo técnico. El bien común incluye lo material y lo espiritual.</div>
+          </div>
+        </div>
+        <div class="zone zone-green">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Fuerte</div>
+            <div class="zone-text">Crítica al individualismo liberal y al estatismo socialista. Ambos vacían a la persona de su capacidad de ser agente.</div>
+          </div>
+        </div>
+        <div class="zone zone-green">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Fuerte</div>
+            <div class="zone-text">Defensa de los cuerpos intermedios: familia, municipio, gremio, empresa. Son los espacios reales de la vida humana.</div>
+          </div>
+        </div>
+        <div class="zone zone-amber">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Parcial</div>
+            <div class="zone-text">Propiedad privada con función social: el excedente debe administrarse para el bien común. Compatible con la distinción tomista entre caridad urgente y justicia estructural.</div>
+          </div>
+        </div>
+        <div class="zone zone-amber">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Parcial</div>
+            <div class="zone-text">Reconoce que la participación genera apropiación: cuando las personas sienten que el bien común es suyo, se involucran de otra manera. Lo dice, aunque luego lo limite.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISTANCIAMIENTOS -->
+  <section class="section" id="distancia">
+    <div class="section-label">Distanciamientos</div>
+    <h2 class="section-title">Donde empieza la distancia</h2>
+
+    <div class="subsection">
+      <div class="subsection-title">La participación y su lugar</div>
+      <p>Para Meinvielle, la participación es un medio para la estabilidad del orden. Para mí, es un fin en sí misma. No porque produzca mejores resultados —aunque en mi experiencia concreta, tanto en organizaciones como en empresas, he observado que cuando las personas asumen el compromiso participativo el trabajo se transforma de maneras visibles y no solo aparentes— sino porque participar con el otro es amar al prójimo, y amar al prójimo es el camino hacia Dios.</p>
+      <p>La participación, entendida así, no es una herramienta política: es una práctica espiritual encarnada en lo cotidiano. He visto lo que ocurre cuando una organización fomenta genuinamente la subsidiariedad hacia quienes tienen menos poder: los resultados son distintos, el compromiso cambia, la dignidad de las personas se transforma. Eso me da convicción en estas palabras.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">El origen de la autoridad</div>
+
+      <div class="schema-wrap">
+        <div class="schema-title">Dos modelos de autoridad</div>
+        <div class="authority-diagram">
+          <div class="auth-col">
+            <div class="auth-col-title">Meinvielle</div>
+            <div class="auth-node">Dios</div>
+            <div class="auth-arrow">↓</div>
+            <div class="auth-node">Ley Natural</div>
+            <div class="auth-arrow">↓</div>
+            <div class="auth-node">Autoridad</div>
+            <div class="auth-arrow">↓</div>
+            <div class="auth-node">Sociedad</div>
+            <div class="auth-arrow">↓</div>
+            <div class="auth-node">Pueblo (asiente)</div>
+          </div>
+          <div class="auth-col">
+            <div class="auth-col-title">Mi lectura</div>
+            <div class="auth-node">Prácticas del pueblo</div>
+            <div class="auth-arrow">↑</div>
+            <div class="auth-node">Relaciones de subsidiariedad</div>
+            <div class="auth-arrow">↑</div>
+            <div class="auth-node">Autoridad emergente</div>
+            <div class="auth-arrow">↑↓</div>
+            <div class="auth-node">Dios actúa en esa complejidad (misterio)</div>
+          </div>
+        </div>
+      </div>
+
+      <p>Desde una mirada trascendente, reconozco que no tengo claridad sobre cómo actúa Dios en todo esto. Ninguna doctrina me la ha dado del todo. Lo que sí percibo es que la autoridad que habilita se parece más al estilo del Jesús que conozco que la autoridad que desciende e impone.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">El sentido de la historia</div>
+      <p>Para Meinvielle, la modernidad es una degeneración desde un orden ideal que hay que restaurar. Hay en su pensamiento una narrativa de declive que culmina en el comunismo como apostasía final. Esa lectura no resuena en mí.</p>
+      <p>Lo que percibo es que cuando el cristianismo se corrompe, algo en el mundo reacciona intentando superar la realidad generada con ausencia de bien común. El liberalismo, el socialismo, el laicismo no son solo errores espontáneos: son respuestas, parciales y con sus propios errores, a una realidad que los cristianos no supimos sostener. La modernidad me parece más una <em>pedagogía divina</em> que una apostasía: Dios permite que exploremos caminos sin Él para que aprendamos a necesitarlo y para que nosotros mismos reflexionemos sobre qué hemos hecho con el Evangelio.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">La verdad, las culturas y la humildad</div>
+      <p>Para Meinvielle, la verdad plena está en la Iglesia Católica y el Estado debe subordinarse a ella. La tolerancia con otras tradiciones es una concesión práctica, no un reconocimiento de derechos.</p>
+      <p>Lo que resuena en mi conciencia es esto: Dios actúa donde quiere. Puede estar actuando en una persona que nunca escuchó el nombre de Jesús. Y a nosotros, los católicos, puede estarnos escondiendo la verdad precisamente por la soberbia de creernos sus únicos portavoces. Pretender que la verdad solo se revela a través de los canales que nosotros controlamos es, en el fondo, imponerle a Dios un manual de operaciones.</p>
+      <p>Esto no es relativismo. Es reconocer que nuestra interpretación de la realidad tiene sesgos que solo el diálogo y la experiencia concreta pueden ir corrigiendo.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">La desigualdad y la jerarquía</div>
+      <p>Para Meinvielle, la jerarquía es natural y debe ordenarse con justicia proporcional. Para mí, la desigualdad es un mal que debe corregirse, no perpetuarse. Quien tiene más —sea en bienes, virtudes o talentos— no ocupa una posición permanente de superioridad: está llamado a servir para que quienes están abajo aprendan a estar arriba. La jerarquía existe, la reconozco, pero su sentido legítimo es pedagógico: existe para moverse hacia su propia superación.</p>
+    </div>
+  </section>
+
+  <!-- MAPA GENERAL -->
+  <section class="section" id="mapa">
+    <div class="section-label">Síntesis visual</div>
+    <h2 class="section-title">Mapa de concordancia y distancia</h2>
+
+    <div class="schema-wrap">
+      <div class="schema-title">Los siete ejes del análisis</div>
+      <div class="zones">
+        <div class="zone zone-green">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Concordancia — Bien común integral</div>
+            <div class="zone-text">Ambos rechazamos que la política se reduzca a gestión económica. El bien común incluye todas las dimensiones de la persona.</div>
+          </div>
+        </div>
+        <div class="zone zone-green">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Concordancia — Cuerpos intermedios</div>
+            <div class="zone-text">Familia, municipio, gremio, empresa: son los espacios donde la vida humana ocurre realmente. Ningún Estado debe absorberlos.</div>
+          </div>
+        </div>
+        <div class="zone zone-amber">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Tensión — Método y punto de partida</div>
+            <div class="zone-text">Meinvielle: doctrina → realidad. Yo: la realidad dialoga con la doctrina. La diferencia produce teologías políticas distintas.</div>
+          </div>
+        </div>
+        <div class="zone zone-amber">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Tensión — Jerarquía y desigualdad</div>
+            <div class="zone-text">Meinvielle la ve como orden natural a regular. Yo la veo como mal a corregir mediante subsidiariedad activa.</div>
+          </div>
+        </div>
+        <div class="zone zone-red">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Ruptura — Origen y dirección de la autoridad</div>
+            <div class="zone-text">Para él desciende desde Dios. Para mí emerge de las prácticas del pueblo, y Dios actúa misteriosamente en esa emergencia.</div>
+          </div>
+        </div>
+        <div class="zone zone-red">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Ruptura — Sentido de la historia</div>
+            <div class="zone-text">Para él: degeneración que restaurar. Para mí: pedagogía divina que evangelizar. La modernidad no es el error: es el territorio.</div>
+          </div>
+        </div>
+        <div class="zone zone-red">
+          <div class="zone-dot"></div>
+          <div>
+            <div class="zone-label">Ruptura — Verdad y otras tradiciones</div>
+            <div class="zone-text">Para él: la verdad plena está en la Iglesia; la tolerancia es concesión. Para mí: Dios actúa donde quiere; imponer es soberbia.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPUESTA INSTITUCIONAL -->
+  <section class="section" id="institucional">
+    <div class="section-label">Alerta crítica</div>
+    <h2 class="section-title">La propuesta institucional y el riesgo que noto</h2>
+    <p>Meinvielle propone reemplazar el modelo liberal-socialista con un régimen corporativo y autoritario: representación por gremios y familias, Estado fuerte limitado por la moral, sufragio solo para jefes de familia en su ámbito natural.</p>
+    <p>Hay en esa propuesta cosas que puedo valorar: la defensa de los cuerpos intermedios, la crítica al sufragio universal como único mecanismo real de participación, el rechazo de un Estado que todo lo absorbe. Pero aquí quiero señalar una alerta que no es menor.</p>
+    <div class="callout callout-alert">
+      Un modelo que concentra la representación en los jefes de familia, en los líderes gremiales, en los "más virtuosos" o los "más capaces", puede funcionar muy bien como legitimación del <em>statu quo</em> de los grupos que ya están en el poder.
+    </div>
+    <p>¿Quién decide quién es virtuoso? ¿Quién determina qué gremio tiene voz y cuál no? ¿Cómo se evita que ese modelo corporativo no sea simplemente la consolidación del privilegio de quienes ya tienen acceso al diseño de las estructuras? Meinvielle no responde esto con suficiencia.</p>
+    <p>Para mí, el problema fundamental no es qué modelo institucional elegimos, sino que <strong>el pueblo se apropie de él participando</strong>. Cambiar de modelo sin transformar la cultura de participación es cambiar de jaula. Y eso vale tanto para el liberalismo como para el corporativismo.</p>
+
+    <div class="schema-wrap">
+      <div class="schema-title">Modelo vs. apropiación</div>
+      <div class="compare-grid">
+        <div class="compare-col col-meinvielle">
+          <div class="compare-col-header">Enfoque de Meinvielle</div>
+          <div class="compare-item">¿Cuál es el modelo correcto?</div>
+          <div class="compare-item">Diseñar la estructura desde arriba</div>
+          <div class="compare-item">El pueblo asiente y aplaude</div>
+          <div class="compare-item">Participación como medio para la estabilidad</div>
+        </div>
+        <div class="compare-col col-javier">
+          <div class="compare-col-header">Mi enfoque</div>
+          <div class="compare-item">¿Cómo se apropia el pueblo?</div>
+          <div class="compare-item">Transformar la cultura desde dentro</div>
+          <div class="compare-item">El pueblo co-crea</div>
+          <div class="compare-item">Participación como fin en sí misma</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTORIDAD Y RESISTENCIA -->
+  <section class="section" id="autoridad">
+    <div class="section-label">Tensión interna</div>
+    <h2 class="section-title">Sobre la autoridad que obliga, sus límites y la resistencia al poder abusivo</h2>
+    <p>Hay una tensión en mi postura que quiero nombrar con honestidad. Creo que hay situaciones donde una autoridad puede y debe obligar a ciertos procesos, no para dominar sino para activar. Si una comunidad se niega sistemáticamente a educarse, a atender una epidemia, o a asumir responsabilidades básicas de convivencia, la autoridad puede intervenir para mover en otra dirección. No como castigo sino como inicio de un proceso.</p>
+    <p>Pero ese límite solo tiene sentido si viene acompañado de la posibilidad real de reflexionar: ver hacia dónde iban antes de la intervención y hacia dónde van después. El objetivo nunca es el control: es abrir la puerta a la conciencia propia. La coerción que no abre camino a la reflexión y al crecimiento no es subsidiariedad: es dominación con otro nombre.</p>
+
+    <div class="subsection">
+      <div class="subsection-title">Sobre el tiranicidio y la reparación del daño</div>
+      <p>Meinvielle admite en su obra que un particular puede matar al tirano usurpador. Yo no comparto esa postura. La decisión de quitar una vida —incluso la de quien ejerce el poder de manera abusiva— no me parece que pueda ser legítimamente tomada por un particular. La dignidad humana es inviolable incluso en quien la viola: de lo contrario, la reconciliación pierde su sentido y la justicia se convierte en venganza.</p>
+      <div class="callout">
+        Que no sea legítimo matar a un mal gobernante no significa que no deba responder por su daño. El gobernante que daña tiene una deuda real con quienes dañó, y esa deuda exige reparación proporcional al daño causado.
+      </div>
+      <p>No como castigo divino ni como acto punitivo en sí mismo, sino como condición necesaria para restituir lo que fue roto. Para eso existen la desobediencia civil, las instituciones de justicia, y en casos extremos la resistencia activa en legítima defensa. La diferencia entre la autoridad que libera y la que domina no está en la fuerza que usa sino en el horizonte hacia el que apunta. Y el horizonte de la justicia genuina siempre incluye la posibilidad de la reparación y la reconciliación.</p>
+    </div>
+  </section>
+
+  <!-- MI POSTURA EN POSITIVO -->
+  <section class="section" id="positivo">
+    <div class="section-label">Postura en construcción</div>
+    <h2 class="section-title">Mi postura en positivo: el marco que uso</h2>
+    <p>Soy consciente de que mi pensamiento se inscribe en corrientes que no siempre se citan juntas. Por un lado, hay resonancias con el <strong>personalismo cristiano</strong>, especialmente con autores como Karol Wojtyła y Joseph Ratzinger, a quienes he leído parcialmente y cuya reflexión sobre la persona como ser irreductible y relacional me ha dado herramientas importantes —aunque no comparto con ellos el mismo conservadurismo en otros aspectos.</p>
+    <p>Por otro lado, me identifico más con las <strong>comunidades eclesiales de base</strong>, tengo simpatía real por la teología de la liberación en lo que tiene de lectura de la realidad desde los pobres, y me interesa profundamente la <strong>teología del pueblo</strong> desarrollada por Lucio Gera y Juan Carlos Scannone, que influyó en la formación del Papa Francisco, reconozco no conocer las teorías completa pero  entiendo que son la base de la formación de almenos dos generaciónes de mi familia .</p>
+
+    <div class="schema-wrap">
+      <div class="schema-title">Las tres corrientes que me forman</div>
+      <div class="flow">
+        <div class="flow-node">Personalismo cristiano<br><span style="font-size:1.05rem;opacity:0.7">Wojtyła · Ratzinger · persona irreductible</span></div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node">Teología del pueblo<br><span style="font-size:1.05rem;opacity:0.7">Gera · Scannone · sujeto histórico</span></div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node">Experiencia concreta<br><span style="font-size:1.05rem;opacity:0.7">subsidiariedad · participación · resultados observados</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node crimson-node">Postura en construcción<br><span style="font-size:1.05rem;opacity:0.7">dinámica subsidiariedad–participación como eje espiritual</span></div>
+      </div>
+    </div>
+
+    <p>Lo que busco es una síntesis que tome la densidad filosófica del personalismo para pensar la dignidad de la persona, y la sensibilidad histórica y pastoral de la teología latinoamericana para pensar desde los márgenes. El eje que más me orienta es la relación entre subsidiariedad y participación, entendida no como fórmula institucional sino como dinámica espiritual: quien tiene más sirve para que quien tiene menos pueda crecer, y ese servicio no es caridad descendente sino cocreación horizontal.</p>
+    <p>Creo que la política no se cambia primero desde el Estado sino desde la cultura organizacional, desde las relaciones familiares hasta las relaciones obrero-patronales, desde los comites vecinales hast las empresas, pienso que al nosotros sanear la corrupción de esas relaciones es cuando nos abrimos a que el espiritú santo habite en nosotros. He visto lo que ocurre cuando esa cultura se transforma: los resultados son visibles y reales, no solo teóricos. Eso no es demostración científica, pero es experiencia interpretada desde un marco más espiritual que científico.</p>
+  </section>
+
+  <!-- EL QUIEBRE -->
+  <section class="section" id="quiebre">
+    <div class="section-label">El punto de quiebre</div>
+    <h2 class="section-title">Lo que nos separa definitivamente</h2>
+
+    <div class="schema-wrap">
+      <div class="schema-title">La diferencia estructural</div>
+      <div class="compare-grid">
+        <div class="compare-col col-meinvielle">
+          <div class="compare-col-header">Meinvielle</div>
+          <div class="compare-item">El orden viene de la verdad que desciende a través de la autoridad</div>
+          <div class="compare-item">El pueblo recibe y asiente</div>
+          <div class="compare-item">Historia como degeneración que restaurar</div>
+          <div class="compare-item">Cristo Rey que reina desde arriba</div>
+        </div>
+        <div class="compare-col col-javier">
+          <div class="compare-col-header">Mi lectura</div>
+          <div class="compare-item">El orden emerge de la participación que brota del amor al prójimo</div>
+          <div class="compare-item">El pueblo co-crea con Dios</div>
+          <div class="compare-item">Historia como pedagogía divina que recorrer</div>
+          <div class="compare-item">El amigo que camina con nosotros desde abajo</div>
+        </div>
+      </div>
+    </div>
+
+    <p>No es solo una diferencia de opinión política o institucional. Es una diferencia sobre dónde miro para encontrar a Dios. Y esa diferencia se expresa de manera muy concreta en la imagen de Jesús que habita en cada postura.</p>
+
+    <div class="ornament-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+    <p>Si estudias a Meinvielle con seriedad, entiendo que encuentres en él una coherencia que te interpela. Es un pensador riguroso con un edificio bien construido. No vengo a decir que esté equivocado en todo, y hay partes de su diagnóstico que comparto.</p>
+    <p>Lo que digo es que yo no habito ese edificio. No porque no valore el orden, la verdad o la tradición, sino porque lo que más resuena en mi conciencia —formada desde niño en ciertos valores y confrontada después con la experiencia concreta de comunidades, organizaciones y personas reales— es algo distinto: que Dios nos invita a co-crear con Él desde abajo, que la verdad se comparte con humildad, que la historia es camino y no restauración, y que la participación no es un medio sino el lugar donde nos configuramos con Cristo.</p>
+    <div class="callout">
+      Lo digo con la convicción que me da haberlo visto funcionar en lo concreto, y con la humildad de saber que Dios sobrepasa por completo lo que yo puedo argumentar.
+    </div>
+  </section>
+
+</main>
+
+<!-- NOTA METODOLÓGICA 
+<section class="section" id="metodo" style="background:#f0e8d8;">
+  <div class="section-label">Transparencia</div>
+  <h2 class="section-title">Cómo se construyó este documento</h2>
+  <p>Este texto fue elaborado en un proceso de diálogo con tres inteligencias artificiales —ChatGPT, DeepSeek y Claude de Anthropic— usadas como mesa de trabajo para entender un escrito en un lenguaje filosófico ajeno a mi formación, ordenar el pensamiento y editar lo que emergía en la conversación.</p>
+  <p>Las ideas, las posturas, las resonancias y las dudas son profundamente personales. La IA funcionó como interlocutor, organizador y redactor de lo que yo aportaba; no como generador de opiniones. Si tuviera que estimar: el <strong>80% de la sustancia es mía</strong> —el discernimiento, la experiencia, las convicciones, las dudas—; el 20% es la forma y la estructura que la IA ayudó a dar.</p>
+  <div class="callout">
+    Ninguna IA puede discernir por mí. Pero sí puede ayudarme a ver con más claridad lo que ya estaba ahí.
+  </div>
+</section> -->
+
+  <!-- NOTA METODOLÓGICA -->
+  <section class="section" id="metodo">
+    <div class="section-label">Sobre este documento</div>
+    <h2 class="section-title">Cómo se construyó este texto</h2>
+    <p>Este documento fue construido en un proceso de diálogo con tres inteligencias artificiales —ChatGPT, DeepSeek y Claude de Anthropic—, usadas como mesa de trabajo para entender un texto en un lenguaje filosófico ajeno a mi formación, ordenar el pensamiento y editar lo que emergía en la conversación.</p>
+    <div class="callout">
+      Las ideas, las posturas, las resonancias y las dudas son profundamente personales. La IA funcionó como interlocutor, organizador y redactor de lo que yo aportaba; no como generador de opiniones.
+    </div>
+    <p>Si tuviera que estimar: el <strong>80% de la sustancia es mía</strong> —el discernimiento, la experiencia concreta, las convicciones, las dudas, las resonancias con el Evangelio— y el <strong>20% es la forma y estructura</strong> que la IA ayudó a dar al material en bruto de la conversación.</p>
+    <p>Ninguna IA puede discernir por mí. Pero sí puede ayudarme a ver con más claridad lo que ya estaba ahí, a a facilitar la comunicación de ideas.</p>
+  </section>
+
+
+<footer class="page-footer">
+  <div class="footer-rule"></div>
+  <p class="footer-text" style="margin-bottom:0.6rem;">
+    <strong style="color:#c4a44a;font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.1em;">
+      Francisco Javier José Angeles
+    </strong>
+  </p>
+  <p class="footer-text" style="margin-bottom:0.4rem;">
+    <a href="https://github.com/JavierJoC" target="_blank"
+       style="color:#9a7c3a;text-decoration:none;font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:0.15em;">
+      github.com/JavierJoC
+    </a>
+  </p>
+  <div class="footer-rule" style="margin:0.8rem auto;"></div>
+  <p class="footer-text" style="font-size:0.8rem;opacity:0.7;">
+    Elaborado con apoyo de ChatGPT · DeepSeek · Claude (Anthropic)
+  </p>
+  <p class="footer-text" style="font-size:0.8rem;opacity:0.6;margin-top:0.3rem;">
+    Oaxaca, México · 2025
+  </p>
+</footer>
+
+</body>
+</html>
